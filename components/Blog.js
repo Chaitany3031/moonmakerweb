@@ -9,19 +9,31 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { ReactSortable } from "react-sortablejs";
 
-export default function Blog() {
+export default function Blog(
+  {
+    id,
+    title:existingTitle,
+    slug:existingslug,
+    images:existingimages,
+    description:existingdescription,
+    category:existingcategory,
+    tags:existingtags,
+    status:existingstatus,
+  }
+) 
+{
   const [redirect, setRedirect] = useState(false);
   const router = useRouter();
   const { query } = router;
   const _id = query._id || null;
 
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [images, setImages] = useState([]);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [status, setStatus] = useState("");
+  const [title, setTitle] = useState(existingTitle || "");
+  const [slug, setSlug] = useState(existingslug || "");
+  const [images, setImages] = useState(existingimages || []);
+  const [description, setDescription] = useState(existingdescription || "");
+  const [category, setCategory] = useState(existingcategory || []);
+  const [tags, setTags] = useState(existingtags||[]);
+  const [status, setStatus] = useState(existingstatus||"");
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleSlugChange = (ev) => {
@@ -308,3 +320,4 @@ export default function Blog() {
     </>
   );
 }
+//02:06:17
